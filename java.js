@@ -8,22 +8,41 @@ const winnerText = document.querySelector(".winner");
 const playAgainBtn = document.querySelector("#play-again");
 const starterScreen = document.querySelector("#starting");
 const startGame = document.querySelector(".play");
+const showNamesBtn = document.querySelector(".show-names");
+const namesScreen = document.querySelector("#names");
+//Button on name screen to start game
+let player1;
+let player2;
 startGame.addEventListener("click", () => {
-    starterScreen.style.display = "none";
+    player1 = Player(document.getElementById("player1").value);
+    player2 = Player(document.getElementById("player2").value);
+    namesScreen.style.display = "none";
     board.style.display = "block";
 })
+//Event when a box is clicked to make a move
 boxes.forEach(box => {
     box.addEventListener("click", () => newMove(box.id))
 })
-resetBtn.addEventListener("click", () => resetBoard())
+//Button to reset the board
+resetBtn.addEventListener("click", () => resetBoard());
+//Button on player winner screen that brings up name screen
 playAgainBtn.addEventListener("click", () => {
     resetBoard();
     gameOverScreen.style.display = "none";
-    board.style.display = "block";
+    namesScreen.style.display = "block";
 })
+//Very first button to start your first game and enter names
+showNamesBtn.addEventListener("click", () => {
+    starterScreen.style.display = "none";
+    namesScreen.style.display = "block";
+})
+//Module storing 2D array of the gameboard
 const Gameboard = (() => {
     //Each array is a new row
-    let gameArr = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    let gameArr = 
+    [[0, 0, 0], 
+     [0, 0, 0], 
+     [0, 0, 0]];
     const changeScore = (row, col, player) => {
         gameArr[row][col] = player;
     }
@@ -87,13 +106,15 @@ const Gameboard = (() => {
     }
     return {changeScore, displayScore, resetScore, checkWinner, checkIfAval}
 })();
+const Player = (name) => {
+    return {name};
+}
 const resetBoard = () => {
     playerOneTurn = true;
     Gameboard.resetScore();
     boxes.forEach(box => box.textContent = "");
 }
-
-//Lets know whose turn it is
+//Boolean to let know whose turn it is
 let playerOneTurn = true;
 const newMove = (id) => {
     let row = convertScore(id).row;
@@ -172,7 +193,7 @@ const checkForWinner = () => {
             gameOverScreen.style.display = "block";
             clearInterval(fadeOut);
         }, 1200);
-        winnerText.textContent = "Player 1 wins!";
+        winnerText.textContent = `${player1.name} wins!`;
     } else if (Gameboard.checkWinner() == 2) {
         gameOverScreen.style.display = "block";
         board.classList.add("fade");
@@ -182,7 +203,7 @@ const checkForWinner = () => {
             gameOverScreen.style.display = "block";
             clearInterval(fadeOut);
         }, 1200);
-        winnerText.textContent = "Player 2 wins!";
+        winnerText.textContent = `${player2.name} wins!`;
     } else if (Gameboard.checkWinner() == "tie") {
         gameOverScreen.style.display = "block";
         board.style.display = "none";

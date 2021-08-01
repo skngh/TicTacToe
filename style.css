@@ -1,5 +1,6 @@
 body {
     text-align: center;
+    font-family: 'Times New Roman', Times, serif;
 }
 #board {
     display: none;
@@ -124,4 +125,21 @@ h1 {
 h2 {
     font-weight: normal;
     font-size: 20px;
+}
+p {
+    font-size: 30px;
+    margin-top: 200px;
+}
+.name {
+    margin-top: 20px;
+    outline: none;
+    border: 0;
+    border-bottom: 2px solid black;
+}
+.name:active, .name:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: .3s;
+}
+#names {
+    display: none;
 }
