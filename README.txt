@@ -1,0 +1,1 @@
+Made for the Odin Project. Was supposed to demonstrate usage of factory functions and modules. I wasn't sure how to incorporate them with storing players, but I used it for the game board. I found it super helpful and it got me a lot more comfortable with the workflow of them.
