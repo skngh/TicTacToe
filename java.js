@@ -103,6 +103,7 @@ const newMove = (id) => {
     if (playerOneTurn == true) {
         Gameboard.changeScore(row, col, 1);
         let imgOne = document.createElement("img");
+        imgOne.classList.add("fade-in-image");
         imgOne.src = "images/X.png"
         element.appendChild(imgOne);
         checkForWinner();
@@ -111,6 +112,7 @@ const newMove = (id) => {
         Gameboard.changeScore(row, col, 2);
         let imgTwo = document.createElement("img");
         imgTwo.src = "images/O.png";
+        imgTwo.classList.add("fade-in-image");
         element.appendChild(imgTwo);
         checkForWinner();
         playerOneTurn = true;
@@ -163,7 +165,6 @@ const convertScore = (pos) => {
 const checkForWinner = () => {
     if(Gameboard.checkWinner() == 1) {
         gameOverScreen.style.display = "block";
-        //board.style.display = "none";
         board.classList.add("fade");
         let fadeOut = setInterval(function() {
             board.classList.remove("fade");
