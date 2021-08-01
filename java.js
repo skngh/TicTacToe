@@ -116,6 +116,7 @@ const newMove = (id) => {
         playerOneTurn = true;
     }
 }
+//Convert 1-9 into correct rows and columns
 const convertScore = (pos) => {
     let row;
     let col;
@@ -162,11 +163,24 @@ const convertScore = (pos) => {
 const checkForWinner = () => {
     if(Gameboard.checkWinner() == 1) {
         gameOverScreen.style.display = "block";
-        board.style.display = "none";
+        //board.style.display = "none";
+        board.classList.add("fade");
+        let fadeOut = setInterval(function() {
+            board.classList.remove("fade");
+            board.style.display = "none";
+            gameOverScreen.style.display = "block";
+            clearInterval(fadeOut);
+        }, 1200);
         winnerText.textContent = "Player 1 wins!";
     } else if (Gameboard.checkWinner() == 2) {
         gameOverScreen.style.display = "block";
-        board.style.display = "none";
+        board.classList.add("fade");
+        let fadeOut = setInterval(function() {
+            board.classList.remove("fade");
+            board.style.display = "none";
+            gameOverScreen.style.display = "block";
+            clearInterval(fadeOut);
+        }, 1200);
         winnerText.textContent = "Player 2 wins!";
     } else if (Gameboard.checkWinner() == "tie") {
         gameOverScreen.style.display = "block";

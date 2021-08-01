@@ -4,6 +4,10 @@ body {
 #board {
     display: none;
 }
+.fade {
+    opacity: 0%;
+    transition: 1s;
+}
 header {
     font-size: 30px;
     margin-top: 40px;
